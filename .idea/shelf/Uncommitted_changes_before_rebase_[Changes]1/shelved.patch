@@ -1,0 +1,208 @@
+Index: src/main/java/ServerSide/Server.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ServerSide;\r\n\r\nimport java.io.IOException;\r\nimport java.net.ServerSocket;\r\n\r\npublic class Server {\r\n    private static final int port = 8189;\r\n    public Server() {\r\n        try (ServerSocket sv = new ServerSocket(port)) {\r\n            //установка соединения с базой данных.\r\n            //установка соединения с сокетом пользователя (или что ещё будет в Netty)\r\n            //регистрация/авторизация пользователя со стороны клиентского приложения\r\n            // Если клиент новый - создание для него всей необходимой информации в бд\r\n            //логика принятия сервером входящих данных, их хранения, отправления пользователю\r\n        } catch (IOException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ServerSide/Server.java b/src/main/java/ServerSide/Server.java
+--- a/src/main/java/ServerSide/Server.java	(revision 4e9811794d74000226f44ed98715aabc25deb2b2)
++++ b/src/main/java/ServerSide/Server.java	(date 1667313605186)
+@@ -1,19 +1,2 @@
+-package ServerSide;
+-
+-import java.io.IOException;
+-import java.net.ServerSocket;
+-
+-public class Server {
+-    private static final int port = 8189;
+-    public Server() {
+-        try (ServerSocket sv = new ServerSocket(port)) {
+-            //установка соединения с базой данных.
+-            //установка соединения с сокетом пользователя (или что ещё будет в Netty)
+-            //регистрация/авторизация пользователя со стороны клиентского приложения
+-            // Если клиент новый - создание для него всей необходимой информации в бд
+-            //логика принятия сервером входящих данных, их хранения, отправления пользователю
+-        } catch (IOException e) {
+-            e.printStackTrace();
+-        }
+-    }
++package ServerSide;public class Server {
+ }
+Index: src/main/java/ClientSide/GUIController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package ClientSide;public class GUIController {\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/ClientSide/GUIController.java b/src/main/java/ClientSide/GUIController.java
+--- a/src/main/java/ClientSide/GUIController.java	(revision 4e9811794d74000226f44ed98715aabc25deb2b2)
++++ b/src/main/java/ClientSide/GUIController.java	(date 1667313510194)
+@@ -1,2 +1,3 @@
+-package ClientSide;public class GUIController {
++package ClientSide;
++public class GUIController {
+ }
+Index: src/main/resources/client.fxml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/client.fxml b/src/main/resources/client.fxml
+--- a/src/main/resources/client.fxml	(revision 4e9811794d74000226f44ed98715aabc25deb2b2)
++++ b/src/main/resources/client.fxml	(date 1667313510202)
+@@ -1,0 +1,9 @@
++<?xml version="1.0" encoding="UTF-8"?>
++
++<?import javafx.scene.layout.*?>
++
++<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
++   <children>
++      <VBox prefHeight="400.0" prefWidth="600.0" />
++   </children>
++</AnchorPane>
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"126bacb7-f868-45b8-8719-26b110afc7a9\" name=\"Changes\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"2G8LHp26uYBsuEPYoDDtTpvAdmP\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"126bacb7-f868-45b8-8719-26b110afc7a9\" name=\"Changes\" comment=\"\" />\r\n      <created>1665765184823</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1665765184823</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 4e9811794d74000226f44ed98715aabc25deb2b2)
++++ b/.idea/workspace.xml	(date 1667313510220)
+@@ -4,24 +4,76 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="126bacb7-f868-45b8-8719-26b110afc7a9" name="Changes" comment="" />
++    <list default="true" id="126bacb7-f868-45b8-8719-26b110afc7a9" name="Changes" comment="Dependencies added">
++      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/main/java/ClientSide/GUIApp.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/ClientSide/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ClientSide/GUIController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/resources/client.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client.fxml" afterDir="false" />
++    </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+     <option name="LAST_RESOLUTION" value="IGNORE" />
+   </component>
++  <component name="FileTemplateManagerImpl">
++    <option name="RECENT_TEMPLATES">
++      <list>
++        <option value="Class" />
++      </list>
++    </option>
++  </component>
++  <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="GUI_Setup" />
++      </map>
++    </option>
++    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
++  <component name="MarkdownSettingsMigration">
++    <option name="stateVersion" value="1" />
++  </component>
++  <component name="MavenImportPreferences">
++    <option name="generalSettings">
++      <MavenGeneralSettings>
++        <option name="useMavenConfig" value="true" />
++      </MavenGeneralSettings>
++    </option>
++  </component>
+   <component name="ProjectId" id="2G8LHp26uYBsuEPYoDDtTpvAdmP" />
+   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-    "RunOnceActivity.ShowReadmeOnStart": "true"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;last_opened_file_path&quot;: &quot;D:/IdeaProjects/Net_Storage&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;
+   }
+-}]]></component>
++}</component>
++  <component name="RunManager">
++    <configuration default="true" type="JetRunConfigurationType">
++      <module name="FileDropBox" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
++      <module name="FileDropBox" />
++      <option name="filePath" />
++      <method v="2">
++        <option name="Make" enabled="true" />
++      </method>
++    </configuration>
++  </component>
+   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+   <component name="TaskManager">
+     <task active="true" id="Default" summary="Default task">
+@@ -31,6 +83,21 @@
+       <option name="presentableId" value="Default" />
+       <updated>1665765184823</updated>
+     </task>
++    <task id="LOCAL-00001" summary="Dependencies added">
++      <created>1667313125142</created>
++      <option name="number" value="00001" />
++      <option name="presentableId" value="LOCAL-00001" />
++      <option name="project" value="LOCAL" />
++      <updated>1667313125142</updated>
++    </task>
++    <task id="LOCAL-00002" summary="Dependencies added">
++      <created>1667313444907</created>
++      <option name="number" value="00002" />
++      <option name="presentableId" value="LOCAL-00002" />
++      <option name="project" value="LOCAL" />
++      <updated>1667313444907</updated>
++    </task>
++    <option name="localTasksCounter" value="3" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -38,10 +105,26 @@
+       <map>
+         <entry key="MAIN">
+           <value>
+-            <State />
++            <State>
++              <option name="FILTERS">
++                <map>
++                  <entry key="branch">
++                    <value>
++                      <list>
++                        <option value="Server_Setup" />
++                      </list>
++                    </value>
++                  </entry>
++                </map>
++              </option>
++            </State>
+           </value>
+         </entry>
+       </map>
+     </option>
++  </component>
++  <component name="VcsManagerConfiguration">
++    <MESSAGE value="Dependencies added" />
++    <option name="LAST_COMMIT_MESSAGE" value="Dependencies added" />
+   </component>
+ </project>
+\ No newline at end of file
