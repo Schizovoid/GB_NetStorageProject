@@ -1,2 +1,3 @@
-package ClientSide;public class GUIController {
+package ClientSide;
+public class GUIController {
 }
