@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="126bacb7-f868-45b8-8719-26b110afc7a9" name="Changes" comment="Dependencies added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ClientSide/GUIController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ClientSide/GUIController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ServerSide/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ServerSide/Server.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/client.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/client.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +23,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="GUI_Setup" />
+        <entry key="$PROJECT_DIR$" value="master" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -86,6 +84,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GUIApp" />
         <item itemvalue="Application.GUIApp" />
       </list>
     </recent_temporary>
