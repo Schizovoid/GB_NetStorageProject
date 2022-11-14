@@ -33,7 +33,7 @@ public class ClientHandler implements Runnable {
                 this.out = clientSocket.getOutputStream();
                 //TO-DO: подключение к базе данных и авторизация пользователя
                 while (!this.getStopped()){
-
+                //Обработка поступающих запросов с клиента
                 }
             } catch (IOException e) {
                 e.printStackTrace();
