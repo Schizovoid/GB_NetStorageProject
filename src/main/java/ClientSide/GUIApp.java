@@ -15,6 +15,10 @@ public class GUIApp extends Application {
     Parent parent = loader.load();
         Scene scene = new Scene(parent);
         primaryStage.setScene(scene);
+        primaryStage.setTitle("Net Storage App");
         primaryStage.show();
+    }
+    public static void main(String[] args) {
+        launch(args);
     }
 }
