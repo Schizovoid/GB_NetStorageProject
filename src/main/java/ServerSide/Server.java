@@ -10,11 +10,10 @@ public class Server implements Runnable {
     public boolean getStopped() {
         return isStopped;
     }
-    protected Thread serverThread;
-
     public void setStopped(boolean stopped) {
         isStopped = stopped;
     }
+    protected Thread serverThread;
     protected InputStream in;
     protected OutputStream out;
 
@@ -34,7 +33,6 @@ public Server(int port) {
         }
         try(ServerSocket serverSocket = new ServerSocket(port))
         {
-            // TO-DO Подключение сервера к базе данных.
             while (!this.isStopped) {
                 Socket clientSocket = serverSocket.accept();
                 in = new DataInputStream(clientSocket.getInputStream());
