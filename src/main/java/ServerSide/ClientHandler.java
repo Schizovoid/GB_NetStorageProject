@@ -31,7 +31,8 @@ public class ClientHandler implements Runnable {
             try {
                 this.in = clientSocket.getInputStream();
                 this.out = clientSocket.getOutputStream();
-                //TO-DO: подключение к базе данных и авторизация пользователя
+                //TO-DO: подключение к базе данных и авторизация пользователя.
+                // Для пользователя создаётся новая корневая папка, равная его nickname в приложении.
                 while (!this.getStopped()){
                 //Обработка поступающих запросов с клиента
                 }
