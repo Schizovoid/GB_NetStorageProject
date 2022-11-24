@@ -1,15 +1,13 @@
 package ClientSide;
 
+import enums.CommandType;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.AnchorPane;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,8 +18,21 @@ public class GUIController {
     protected InputStream in;
     protected OutputStream out;
     protected String nickName;
-    protected File dlFilePath;
-    protected File ulFilePath;
+    public String getNickName() {
+        return nickName;
+    }
+    public void setNickName(String nickName) {
+        this.nickName = nickName;
+    }
+
+    protected CommandType commandType;
+    public CommandType getCommandType() {
+        return commandType;
+    }
+    public void setCommandType(CommandType commandType) {
+        this.commandType = commandType;
+    }
+    protected File chosenFile;
     @FXML
     AnchorPane anchor;
 
@@ -41,17 +52,25 @@ public class GUIController {
 
     }
 
-    //Для каждой кнопки, совершающей действие на сервере, создаётся свой метод(ActionEvent). Эти методы включают в себя
-    //метод sendCommand, создающий и отправляющий сериализированный объект HandleRequest.
-
     private void uploadDoc(){
+        setCommandType(CommandType.UPLOAD_DOC);
+        try(BufferedInputStream bufIn = new BufferedInputStream(new FileInputStream(chosenFile));
+            ObjectOutputStream objOut = new ObjectOutputStream(new BufferedOutputStream(out)))
+        {
+            byte[] bytesRead = new byte[(int)chosenFile.length()];
+            bufIn.read(bytesRead);
+            HandleRequest handleRequest = new HandleRequest(nickName, commandType);
+            handleRequest.fileName = chosenFile.getName();
+            handleRequest.fileData = bytesRead;
+            objOut.writeObject(handleRequest);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
     private void downloadDoc(){
-
-    }
-    private void sendCommand () {
-    HandleRequest handleRequest = new HandleRequest(nickName);
+        setCommandType(CommandType.DOWNLOAD_DOC);
+        HandleRequest handleRequest = new HandleRequest(nickName, commandType);
     }
     private void closeApplication(ActionEvent actionEvent) {
         Platform.exit();
