@@ -5,7 +5,7 @@ import enums.CommandType;
 import java.io.File;
 import java.io.Serializable;
 
-public class HandleRequest implements Serializable {
+public class Command implements Serializable {
 
     //Имя отправителя. Совпадает с ником пользователя в приложении. Используется для создания корневой папки для пользователя.
     protected String sender;
@@ -18,9 +18,9 @@ public class HandleRequest implements Serializable {
     //Название файла, с которым работает приложение.
     protected String fileName;
     //Массив данных, загружаемый или скачиваемый приложением из файла.
-    byte[] fileData;
+    public byte[] fileData;
 
-public HandleRequest (String sender, CommandType commandType) {
+public Command(String sender, CommandType commandType) {
 this.sender = sender;
 this.commandType = commandType;
 }
@@ -32,5 +32,12 @@ this.commandType = commandType;
     }
     public String getSender() {
         return sender;
+    }
+    public String getFileName() {
+        return fileName;
+    }
+
+    public byte[] getFileData() {
+        return fileData;
     }
 }

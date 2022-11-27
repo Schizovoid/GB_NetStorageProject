@@ -1,11 +1,9 @@
 package ServerSide;
 
-import ClientSide.HandleRequest;
+import ClientSide.Command;
+import enums.CommandType;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,10 +12,6 @@ public class ClientHandler implements Runnable {
     protected InputStream in;
     protected OutputStream out;
     protected Socket clientSocket;
-    protected boolean isStopped = false;
-    public boolean getStopped() {
-        return isStopped;
-    }
     protected String clientName;
     protected Path clientDirectory;
 
@@ -33,11 +27,11 @@ public class ClientHandler implements Runnable {
     //Десериализируются входящие запросы с клиента, даются дальнейшие команды в зависимости от типа переданой команды
     public void handle() {
     try (ObjectInputStream objIn = new ObjectInputStream(in)){
-        HandleRequest handleRequest = (HandleRequest) objIn.readObject();
-        switch (handleRequest.getCommandType()){
-            case AUTHORISE -> authoriseClient(handleRequest.getSender());
-            case DOWNLOAD_DOC -> downloadDocThere();
-            case UPLOAD_DOC -> uploadDocHere();
+        Command command = (Command) objIn.readObject();
+        switch (command.getCommandType()){
+            case AUTHORIZE -> authoriseClient(command.getSender());
+            case DOWNLOAD_FILE -> downloadFileThere(command.getFileName());
+            case UPLOAD_FILE -> uploadFileHere(command.getFileName(), command.getFileData());
         }
     } catch (IOException | ClassNotFoundException e){
         e.printStackTrace();
@@ -48,8 +42,8 @@ public class ClientHandler implements Runnable {
             try {
                 this.in = clientSocket.getInputStream();
                 this.out = clientSocket.getOutputStream();
-                //TO-DO: подключение к базе данных и авторизация пользователя
-                while (!this.getStopped()){
+                //TO-DO: подключение к базе данных
+                while (clientSocket.isConnected() & !clientSocket.isClosed()){
                     //Обработка поступающих запросов с клиента
                     handle();
                 }
@@ -63,16 +57,41 @@ public class ClientHandler implements Runnable {
 
             //Для пользователя создаётся его корневая папка
             clientName = name;
-            clientDirectory = Path.of(String.format("src/main/TempStorage/%s" , name));
-            Files.createDirectory(clientDirectory);
+            clientDirectory = Path.of(String.format("src/main/TempStorage/%s/" , name));
+            if (!clientDirectory.toFile().exists()) {
+                Files.createDirectory(clientDirectory);
+            }
         }catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public void uploadDocHere() {
-
+    //Сохранение копии переданного файла на стороне сервера
+    public void uploadFileHere(String fileName, byte[] content) {
+        try {
+            File file = Files.createFile(Path.of((clientDirectory + fileName))).toFile();
+            BufferedOutputStream fileOut = new BufferedOutputStream(new FileOutputStream(file));
+            fileOut.write(content);
+            fileOut.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-    public void downloadDocThere() {
-
+    public void downloadFileThere(String fileName) {
+    try(ObjectOutputStream objOut = new ObjectOutputStream(new BufferedOutputStream(out))){
+        File file = (Path.of(String.format(clientDirectory + "/%s", fileName))).toFile();
+        if (file.exists()) {
+            try (FileInputStream fileIn = new FileInputStream(file)) {
+                byte[] content = new byte[(int)file.length()];
+                fileIn.read(content);
+                Command command = new Command(clientName, CommandType.DOWNLOAD_FILE);
+                command.fileData = content;
+            objOut.writeObject(command);
+            }
+        } else {
+            throw new RuntimeException("File does not exist.");
+        }
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
     }
     }
